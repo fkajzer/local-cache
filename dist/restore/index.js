@@ -3971,7 +3971,7 @@ function run() {
             core.saveState('cache-base', cacheBase);
             core.saveState('cache-path', cachePath);
             yield (0, cache_1.exec)(`mkdir -p ${cacheBase}`);
-            const find = yield (0, cache_1.exec)(`find ${cacheBase} -maxdepth 1 -name ${key} -type d`);
+            const find = yield (0, cache_1.exec)(`C:\\Users\\Admin\\scoop\\shims\\find.exe ${cacheBase} -maxdepth 1 -name ${key} -type d`);
             const cacheHit = find.stdout ? true : false;
             core.saveState('cache-hit', String(cacheHit));
             core.setOutput('cache-hit', String(cacheHit));

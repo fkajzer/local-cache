@@ -43,7 +43,7 @@ async function run(): Promise<void> {
 
     await exec(`mkdir -p ${cacheBase}`)
     const find = await exec(
-      `find ${cacheBase} -maxdepth 1 -name ${key} -type d`
+      `C:\\Users\\Admin\\scoop\\shims\\find.exe ${cacheBase} -maxdepth 1 -name ${key} -type d`
     )
     const cacheHit = find.stdout ? true : false
     core.saveState('cache-hit', String(cacheHit))
