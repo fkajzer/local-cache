@@ -11,7 +11,7 @@ async function run(): Promise<void> {
       const path = core.getState('path')
 
       await exec(`mkdir -p ${cachePath}`)
-      const mv = await exec(`mv ./${path} ${cachePath}`)
+      const mv = await exec(`tar -czf ${cachePath}/cache.tar.gz ./${path}`)
 
       core.debug(mv.stdout)
       if (mv.stderr) core.error(mv.stderr)

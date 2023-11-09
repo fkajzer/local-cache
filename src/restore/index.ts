@@ -43,16 +43,14 @@ async function run(): Promise<void> {
 
     await exec(`mkdir -p ${cacheBase}`)
     const find = await exec(
-      `C:\\Users\\Admin\\scoop\\shims\\find.exe ${cacheBase} -maxdepth 1 -name ${key} -type d`
+      `C:\\Users\\Admin\\scoop\\shims\find.exe ${cacheBase} -maxdepth 1 -name ${key} -type d`
     )
     const cacheHit = find.stdout ? true : false
     core.saveState('cache-hit', String(cacheHit))
     core.setOutput('cache-hit', String(cacheHit))
 
     if (cacheHit === true) {
-      const ln = await exec(
-        `ln -s ${p.join(cachePath, path.split('/').slice(-1)[0])} ./${path}`
-      )
+      const ln = await exec(`tar -xzf ${cachePath}/cache.tar.gz ./${path}`)
 
       core.debug(ln.stdout)
       if (ln.stderr) core.error(ln.stderr)
